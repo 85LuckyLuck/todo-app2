@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todoapp-ef21f": {
+      "hosting": {
+        "todo-app2": [
+          "todoapp-ef21f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todoapp-ef21f"
+  }
+}
