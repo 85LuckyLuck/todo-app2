@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, Inject } from '@
 import { Observable } from 'rxjs';
 import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 import { GETS_ALL_TASK_DTO, GetsAllTaskDtoPort } from '../../../application/ports/secondary/gets-all-task.dto-port';
+import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secondary/adds-task.dto-port';
 
 @Component({ 
     selector: 'lib-add-task',
@@ -12,7 +13,16 @@ import { GETS_ALL_TASK_DTO, GetsAllTaskDtoPort } from '../../../application/port
 export class AddTaskComponent {
   readonly textForm: FormGroup = new FormGroup({ text: new FormControl()});
   task$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
+  
 
-  constructor(@Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort) {
+  constructor(@Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort, @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort) {
   }
+
+  onTaskClicked(form:FormGroup): void {
+    this._addsTaskDto.add({
+      text: form.get('text')?.value,
+      done: false,
+    });
+  this.textForm.reset();
+}
 }
