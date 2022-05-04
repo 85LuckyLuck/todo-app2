@@ -1,6 +1,13 @@
 <form [formGroup]="textForm">
-    <input type="text" formControlName="text" placeholder="Text">
-    <input type="submit" value="Submit">
+    <input  type="text" class="col-7 form-control" style="width:300px;" formControlName="text" id="task" rows="4"placeholder="write your message here">
+    <br>
+    <br>
+    <div>
+        <button type="button" class="btn btn-primary me-md-2 ">ADD TASK</button>
+        <button routerLink="/" class="btn btn-danger" type="button">CANCEL</button>
+        <div>
+    </div>
+    </div>
 </form>
 
 
