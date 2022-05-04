@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 import { GETS_ALL_TASK_DTO, GetsAllTaskDtoPort } from '../../../application/ports/secondary/gets-all-task.dto-port';
 import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secondary/adds-task.dto-port';
+import { REMOVES_TASK_DTO, RemovesTaskDtoPort } from '../../../application/ports/secondary/removes-task.dto-port';
 
 @Component({ 
     selector: 'lib-add-task',
@@ -15,7 +16,10 @@ export class AddTaskComponent {
   task$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
   
 
-  constructor(@Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort, @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort) {
+  constructor(
+    @Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort,
+     @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort, 
+     @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort) {
   }
 
   onTaskClicked(form:FormGroup): void {
@@ -25,4 +29,8 @@ export class AddTaskComponent {
     });
   this.textForm.reset();
 }
+
+  onRemoveTaskClicked(id: TaskDTO): void {
+    this._removesTaskDto.remove(id.id);
+  }
 }
