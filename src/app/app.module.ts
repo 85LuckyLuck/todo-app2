@@ -7,6 +7,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { DataPickerComponentModule } from '@todo2';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { DataPickerComponentModule } from '@todo2';
   ],
   imports: [
     DataPickerComponentModule,
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
