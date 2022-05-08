@@ -10,10 +10,10 @@
     </div>
 </form>
 
-<div class="row" *ngFor="let item of task$ | async">{{ item }}>
+<div class="row" *ngFor="let item of task$ | async">
      <div class="col-md-7">
-<input class="form-check-input rounded-circle pointer" type="radio">
-<label class="strikethrough"></label>
+<input (click)="onTasksCheckeded(item)" class="form-check-input rounded-circle pointer" type="radio" [checked]="item.done">
+<label class="strikethrough">{{item.text}}</label>
 </div>
 <div class="col-md-4">
 <div class="col-9 text-light h3"></div>
